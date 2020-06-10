@@ -1,0 +1,47 @@
+#DEFAULT
+---
+spring:
+  profiles: default
+server:
+  port: 8080
+service1:
+  value1: 100
+
+task:
+  profile:
+      corePoolSize: 3
+      maxPoolSize: 5
+      keepAliveSecond: 60
+      queueCapacity: 1000
+
+#DEV
+---
+spring:
+  profiles: DEV
+server:
+  port: 8081
+service1:
+  value1: 200
+
+task:
+  profile:
+    corePoolSize: 5
+    maxPoolSize: 5
+    keepAliveSecond: 60
+    queueCapacity: 2000
+
+#TEST
+---
+spring:
+  profiles: TEST
+server:
+  port: ${server.port}
+service1:
+  value1: ${service1.value}
+
+task:
+  profile:
+    corePoolSize: ${task.profile.corePoolSize}
+    maxPoolSize: ${task.profile.maxPoolSize}
+    keepAliveSecond: ${task.profile.keepAliveSecond}
+    queueCapacity: ${task.profile.queueCapacity}
